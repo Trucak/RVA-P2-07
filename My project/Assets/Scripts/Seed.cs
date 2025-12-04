@@ -1,6 +1,5 @@
 using UnityEngine;
 
-
 public class Seed : MonoBehaviour
 {
     [SerializeField] private GameObject plantPrefab;
@@ -15,22 +14,15 @@ public class Seed : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        // Check if colliding with ground
         if (collision.gameObject.CompareTag(groundTag))
         {
-            // Check if the seed is currently being held
             if (grabInteractable != null && grabInteractable.isSelected)
             {
-                // Optional: Don't plant if still holding? 
-                // Or maybe "placing" implies holding it against the ground.
-                // Let's assume we plant when it touches the ground, even if held, 
-                // or maybe better: only if released. 
-                // The prompt says "Pegar -> colocar -> cresce". 
-                // "Colocar" usually means putting it down.
-                // Let's allow planting while holding for smoother interaction, 
-                // or wait for release. Let's wait for release to avoid accidents.
                 return; 
             }
+
+            SeedSpawner spawner = collision.gameObject.GetComponent<SeedSpawner>();
+            if (spawner != null) return; 
 
             PlantSeed(collision.contacts[0].point);
         }

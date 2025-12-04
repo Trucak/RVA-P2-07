@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Plant : MonoBehaviour
 {
-    [SerializeField] private float growDuration = 2.0f;
+    [SerializeField] private float growDuration = 5.0f;
     [SerializeField] private Vector3 targetScale = Vector3.one;
 
     private void Start()
