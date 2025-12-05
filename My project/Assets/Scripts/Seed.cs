@@ -3,7 +3,7 @@ using UnityEngine;
 public class Seed : MonoBehaviour
 {
     [SerializeField] private GameObject plantPrefab;
-    [SerializeField] private string groundTag = "Ground";
+    [SerializeField] private string groundTag = "Terrain";
 
     private UnityEngine.XR.Interaction.Toolkit.Interactables.XRGrabInteractable grabInteractable;
 

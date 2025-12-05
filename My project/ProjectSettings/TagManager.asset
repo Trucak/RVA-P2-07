@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Ground
+  - Anchor
+  - RockSet_01
+  - Terrain
   layers:
   - Default
   - TransparentFX

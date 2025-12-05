@@ -60,10 +60,8 @@
     <Analyzer Include="D:\Realidade Virtual e Aumentada\6000.2.7f2\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\ALP_Assets\Big Oak Tree FREE\Core\Scripts\Global Lighting\Editor\ALP8310_GlobalLightingWindow.cs" />
-    <Compile Include="Assets\ALP_Assets\Big Oak Tree FREE\Core\Scripts\GUI\Editor\ALP8310_ShaderGUI.cs" />
-    <Compile Include="Assets\ALP_Assets\Big Oak Tree FREE\Core\Scripts\Global Lighting\Editor\ALP8310_LightsSettings.cs" />
-    <Compile Include="Assets\ALP_Assets\Big Oak Tree FREE\Core\Scripts\GUI\Editor\ALP8310_ShaderDrawers.cs" />
+    <Compile Include="Assets\TreePackVol.1\Editor\Rate_Me.cs" />
+    <Compile Include="Assets\TreePackVol.1\Editor\AS_Offers.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -1468,10 +1466,6 @@
       <Project>{DD6E7BF9-CD64-FBC5-065B-454631E9CC5E}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator</Name>
     </ProjectReference>
-    <ProjectReference Include="ALP8310_ControllerGlobal.csproj">
-      <Project>{2B3E1436-8D76-8DA1-C263-F412B25BABDF}</Project>
-      <Name>ALP8310_ControllerGlobal</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj">
       <Project>{E965D3A1-D697-4EFE-2F68-0F8FF8D4BC4B}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets</Name>
@@ -1483,10 +1477,6 @@
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj">
       <Project>{5F4F565A-04D6-1FB5-118E-621500A6DCB0}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="ALP8310_ControllerGlobal.Editor.csproj">
-      <Project>{45835400-B6B4-A9D7-1AE9-01EEFD0FCECD}</Project>
-      <Name>ALP8310_ControllerGlobal.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
