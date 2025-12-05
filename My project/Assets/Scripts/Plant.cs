@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Plant : MonoBehaviour
 {
-    [SerializeField] private float growDuration = 5.0f;
+    [SerializeField] private float growDuration = 20.0f;
+    [SerializeField] private float startDelay = 1.0f;
     [SerializeField] private Vector3 targetScale = Vector3.one;
 
     private void Start()
@@ -14,6 +15,8 @@ public class Plant : MonoBehaviour
 
     private IEnumerator GrowRoutine()
     {
+        yield return new WaitForSeconds(startDelay);
+
         float timer = 0f;
         while (timer < growDuration)
         {

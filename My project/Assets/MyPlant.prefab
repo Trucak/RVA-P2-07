@@ -126,5 +126,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a098e7cf8830d0e4aab28050e233263d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Plant
-  growDuration: 2
+  growDuration: 20
+  startDelay: 1
   targetScale: {x: 1, y: 1, z: 1}
