@@ -11,6 +11,7 @@ public class ZenStone : MonoBehaviour
     private Rigidbody rb;
     private Vector3 lastPosition;
     private float grabStartTime;
+    private Vector3 initialPosition;
 
     private void Awake()
     {
@@ -20,6 +21,15 @@ public class ZenStone : MonoBehaviour
         if (rb != null)
         {
             rb.centerOfMass = new Vector3(0, -0.02f, 0);
+        }
+    }
+
+    private void Start()
+    {
+        initialPosition = transform.position;
+        if (rb != null)
+        {
+            rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         }
     }
 
@@ -95,6 +105,12 @@ public class ZenStone : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (transform.position.y < -10f)
+        {
+            Respawn();
+            return;
+        }
+
         if (grabInteractable.isSelected)
         {
             CheckStability();
@@ -164,5 +180,15 @@ public class ZenStone : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void Respawn()
+    {
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+        transform.position = initialPosition;
     }
 }
