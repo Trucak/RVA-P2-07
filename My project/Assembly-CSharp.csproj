@@ -88,7 +88,6 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile-2-Pass.shader" />
     <None Include="Assets\VRTemplateAssets\Shaders\FauxBlurURP.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
-    <None Include="Assets\ALP_Assets\Big Oak Tree FREE\Shaders\ALP Billboard Cross Wind.shader" />
     <None Include="Assets\Fantasy Skybox FREE\Readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
@@ -101,20 +100,16 @@
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
-    <None Include="Assets\ALP_Assets\Big Oak Tree FREE\Shaders\ALP Surface Detail.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
-    <None Include="Assets\ALP_Assets\Big Oak Tree FREE\Shaders\ALP Water Gestner Waves.shader" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
-    <None Include="Assets\ALP_Assets\Big Oak Tree FREE\Shaders\ALP Surface Detail Wind.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
     <None Include="Assets\VRTemplateAssets\Shaders\TexturedFresnelStandard.shader" />
     <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\VRTemplateAssets\Shaders\TexturedStableFresnelCommon.cginc" />
-    <None Include="Assets\ALP_Assets\Big Oak Tree FREE\Shaders\ALP Cutout Translucency Wind.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\VRTemplateAssets\Materials\Skybox\Horizontal Skybox.shader" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
@@ -1478,10 +1473,6 @@
       <Project>{DD6E7BF9-CD64-FBC5-065B-454631E9CC5E}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.DeviceSimulator</Name>
     </ProjectReference>
-    <ProjectReference Include="ALP8310_ControllerGlobal.csproj">
-      <Project>{2B3E1436-8D76-8DA1-C263-F412B25BABDF}</Project>
-      <Name>ALP8310_ControllerGlobal</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.csproj">
       <Project>{E965D3A1-D697-4EFE-2F68-0F8FF8D4BC4B}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets</Name>
@@ -1493,10 +1484,6 @@
     <ProjectReference Include="Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor.csproj">
       <Project>{5F4F565A-04D6-1FB5-118E-621500A6DCB0}</Project>
       <Name>Unity.XR.Interaction.Toolkit.Samples.StarterAssets.Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="ALP8310_ControllerGlobal.Editor.csproj">
-      <Project>{45835400-B6B4-A9D7-1AE9-01EEFD0FCECD}</Project>
-      <Name>ALP8310_ControllerGlobal.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
