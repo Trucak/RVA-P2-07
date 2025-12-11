@@ -355,58 +355,6 @@ Transform:
   - {fileID: 378285193}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &67728842
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 67728844}
-  - component: {fileID: 67728843}
-  m_Layer: 0
-  m_Name: GardenManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &67728843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67728842}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7794751935d133a4abb57b5ef0f64a43, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GardenManager
-  seasonSkyboxes:
-  - {fileID: 2100000, guid: 2c994d22a9398f64d9292e3849f59f92, type: 2}
-  directionalLight: {fileID: 201238895}
-  snowParticleSystem: {fileID: 1050506656}
-  summerLightColor: {r: 1, g: 0.95, b: 0.8, a: 1}
-  springAmbientColor: {r: 0.6, g: 0.5, b: 0.4, a: 1}
-  autumnAmbientColor: {r: 0.4, g: 0.2, b: 0.1, a: 1}
-  autumnLightIntensityMultiplier: 0.5
---- !u!4 &67728844
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67728842}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &86697006
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2038,87 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7ea2fe6ab5e9eb8488b1f8a0fb80932c, type: 3}
+--- !u!1 &612205115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 612205117}
+  - component: {fileID: 612205116}
+  m_Layer: 0
+  m_Name: GardenManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &612205116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612205115}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7794751935d133a4abb57b5ef0f64a43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GardenManager
+  seasonSkyboxes:
+  - {fileID: 2100000, guid: c051fe5a20f72814f9643eb10ebbd2fc, type: 2}
+  - {fileID: 2100000, guid: b141c8e4f6387ef45b13a68b10c88b7f, type: 2}
+  - {fileID: 2100000, guid: 6e00f8b39315691449f256740a5cb862, type: 2}
+  - {fileID: 2100000, guid: e0a21ebc98cee4e46bbae873ec0be703, type: 2}
+  directionalLight: {fileID: 201238895}
+  snowParticleSystem: {fileID: 1050506656}
+  seasonSunRotations:
+  - {x: 70, y: 22, z: 0}
+  - {x: 54, y: -30, z: 0}
+  - {x: 12, y: 65, z: 0}
+  - {x: 60, y: -30, z: 0}
+  seasonSunColors:
+  - {r: 1, g: 1, b: 0.9843137, a: 1}
+  - {r: 1, g: 1, b: 0.9843137, a: 1}
+  - {r: 0.78431374, g: 0.44616824, b: 0.113725476, a: 1}
+  - {r: 0.6, g: 0.75, b: 1, a: 1}
+  seasonSunIntensities:
+  - 8
+  - 7
+  - 5
+  - 0
+  seasonAmbientColors:
+  - {r: 1, g: 1, b: 0.9843137, a: 1}
+  - {r: 0.8820755, g: 0.9963093, b: 1, a: 1}
+  - {r: 0.4, g: 0.2, b: 0.1, a: 1}
+  - {r: 0.2845319, g: 0.31488493, b: 0.4339623, a: 1}
+  seasonAmbientIntensities:
+  - 1.5
+  - 1
+  - 2
+  - 1
+  seasonFogColors:
+  - {r: 0.76862746, g: 0.94509804, b: 1, a: 1}
+  - {r: 0.5058824, g: 0.7607844, b: 0.9215687, a: 1}
+  - {r: 0.754717, g: 0.47473076, b: 0.28123888, a: 1}
+  - {r: 0.30588236, g: 0.3647059, b: 0.40000004, a: 1}
+--- !u!4 &612205117
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612205115}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &616251440
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12592,10 +12621,10 @@ SceneRoots:
   - {fileID: 49414667}
   - {fileID: 1995585051}
   - {fileID: 1869188512}
-  - {fileID: 67728844}
   - {fileID: 932437942}
   - {fileID: 378246762}
   - {fileID: 1497486269}
   - {fileID: 1653796713}
-  - {fileID: 86697008}
   - {fileID: 1050506657}
+  - {fileID: 612205117}
+  - {fileID: 86697008}

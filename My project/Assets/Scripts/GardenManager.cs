@@ -18,17 +18,25 @@ public class GardenManager : MonoBehaviour
     [SerializeField] private Light directionalLight;
     [SerializeField] private ParticleSystem snowParticleSystem;
 
-    [Header("Season Operations")]
-    [SerializeField] private Color summerLightColor = new Color(1f, 0.95f, 0.8f); // Warm Sunlight
-    [SerializeField] private Color springAmbientColor = new Color(0.6f, 0.5f, 0.4f); // Brownish
-    [SerializeField] private Color autumnAmbientColor = new Color(0.4f, 0.2f, 0.1f); // Dark Brown
-    [SerializeField] private float autumnLightIntensityMultiplier = 0.5f;
+    [Header("Sun Settings")]
+    [SerializeField] private Vector3[] seasonSunRotations;
+    [SerializeField] private Color[] seasonSunColors;
+    [SerializeField] private float[] seasonSunIntensities;
+
+    [Header("Ambient Settings")]
+    [SerializeField] private Color[] seasonAmbientColors;
+    [SerializeField] private float[] seasonAmbientIntensities;
+
+    [Header("Fog Settings")]
+    [SerializeField] private Color[] seasonFogColors;
 
     private Color originalLightColor;
     private float originalLightIntensity;
+    private Quaternion originalLightRotation;
     private Color originalAmbientColor;
     private Material originalSkybox;
     private UnityEngine.Rendering.AmbientMode originalAmbientMode;
+    private Color originalFogColor;
 
     [Header("Game State")]
     private int plantCount = 0;
@@ -57,10 +65,12 @@ public class GardenManager : MonoBehaviour
         {
             originalLightColor = directionalLight.color;
             originalLightIntensity = directionalLight.intensity;
+            originalLightRotation = directionalLight.transform.rotation;
         }
         originalAmbientColor = RenderSettings.ambientLight;
         originalSkybox = RenderSettings.skybox;
         originalAmbientMode = RenderSettings.ambientMode;
+        originalFogColor = RenderSettings.fogColor;
 
         StopSnow();
 
@@ -85,66 +95,52 @@ public class GardenManager : MonoBehaviour
     public void SetSeason(Season newSeason)
     {
         currentSeason = newSeason;
+        int index = (int)currentSeason;
         Debug.Log("Setting season to: " + currentSeason);
         
         // Reset effects first
         StopSnow();
         
-        // Restore defaults first (baseline)
+        UpdateSkybox(index);
+
         if (directionalLight != null)
         {
-            directionalLight.intensity = originalLightIntensity;
-            directionalLight.color = originalLightColor; // Restore original color
+            // Apply overrides for all seasons (including Summer)
+            if (seasonSunColors != null && index < seasonSunColors.Length) 
+                directionalLight.color = seasonSunColors[index];
+            
+            if (seasonSunIntensities != null && index < seasonSunIntensities.Length) 
+                directionalLight.intensity = seasonSunIntensities[index];
+            
+            if (seasonSunRotations != null && index < seasonSunRotations.Length) 
+                directionalLight.transform.rotation = Quaternion.Euler(seasonSunRotations[index]);
         }
-        RenderSettings.ambientLight = originalAmbientColor;
-        RenderSettings.ambientMode = originalAmbientMode;
-        
-        switch (currentSeason)
+
+        if (index == 0) // Summer (Default)
         {
-            case Season.Summer:
-                // Summer acts as "Default/Reset" - clear all season overrides
-                // No explicit calls needed as defaults are restored above
-                StopSnow(); 
-                UpdateSkybox(0); 
-                break;
-                
-            case Season.Spring:
-                // Spring: Summer light + acastanhado (brownish) ambient
-                // If you want Spring to use "Summer Color" vs "Original", use originalLightColor or summerLightColor field.
-                // Assuming user wants "Original" as base for everything now.
-                if (directionalLight != null) directionalLight.color = summerLightColor; // Keep using this warm color for Spring? Or Original?
-                // User only complained about Summer. I'll keep Spring using the warm helper variable if they want, or I should use original?
-                // Let's use summerLightColor for Spring/Autumn overrides if it enhances them, BUT logic says Spring is based on "Summer".
-                // I will keep Spring as is for now to avoid breaking it.
-                RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-                RenderSettings.ambientLight = springAmbientColor;
-                StopSnow();
-                UpdateSkybox(1);
-                break;
-                
-            case Season.Autumn:
-                // Autumn: Much more brown and dark
-                RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-                RenderSettings.ambientLight = autumnAmbientColor;
-                if (directionalLight != null)
-                {
-                    directionalLight.color = new Color(0.8f, 0.6f, 0.4f); // Warm/dim light
-                    directionalLight.intensity = originalLightIntensity * autumnLightIntensityMultiplier;
-                }
-                StopSnow();
-                UpdateSkybox(2);
-                break;
-                
-            case Season.Winter:
-                // Winter: Snow falling + Darker Blue Light (Real Winter)
-                 if (directionalLight != null) 
-                 {
-                     directionalLight.color = new Color(0.6f, 0.75f, 1.0f); // Stronger Blue
-                     directionalLight.intensity = originalLightIntensity * 0.6f; // Darker
-                 }
-                if (snowParticleSystem != null) snowParticleSystem.Play();
-                UpdateSkybox(3);
-                break;
+             RenderSettings.ambientMode = originalAmbientMode;
+             RenderSettings.ambientLight = originalAmbientColor;
+        }
+        else
+        {
+             RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+             if (seasonAmbientColors != null && index < seasonAmbientColors.Length) 
+                RenderSettings.ambientLight = seasonAmbientColors[index];
+        }
+
+        if (seasonAmbientIntensities != null && index < seasonAmbientIntensities.Length)
+        {
+            RenderSettings.ambientIntensity = seasonAmbientIntensities[index];
+        }
+
+        if (seasonFogColors != null && index < seasonFogColors.Length)
+        {
+            RenderSettings.fogColor = seasonFogColors[index];
+        }
+
+        if (currentSeason == Season.Winter && snowParticleSystem != null)
+        {
+            snowParticleSystem.Play();
         }
 
         DynamicGI.UpdateEnvironment();
