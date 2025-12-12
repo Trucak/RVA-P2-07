@@ -1,34 +1,44 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 public class GardenManager : MonoBehaviour
 {
     public static GardenManager Instance { get; private set; }
 
-    public enum Season
+    public enum TimeOfDay
     {
-        Summer,
-        Spring,
-        Autumn,
-        Winter
+        Midday,     // Was Summer/PicoDoDia
+        Morning,    // Was Spring/Manha
+        Evening,    // Was Autumn/FimDeTarde
+        Night       // Was Winter/Noite
     }
 
     [Header("Environment Settings")]
-    [SerializeField] private Material[] seasonSkyboxes;
+    [FormerlySerializedAs("seasonSkyboxes")]
+    [SerializeField] private Material[] timeOfDaySkyboxes;
     [SerializeField] private Light directionalLight;
-    [SerializeField] private ParticleSystem snowParticleSystem;
+    
+    [FormerlySerializedAs("snowParticleSystem")]
+    [SerializeField] private ParticleSystem nightParticleSystem;
 
     [Header("Sun Settings")]
-    [SerializeField] private Vector3[] seasonSunRotations;
-    [SerializeField] private Color[] seasonSunColors;
-    [SerializeField] private float[] seasonSunIntensities;
+    [FormerlySerializedAs("seasonSunRotations")]
+    [SerializeField] private Vector3[] timeOfDaySunRotations;
+    [FormerlySerializedAs("seasonSunColors")]
+    [SerializeField] private Color[] timeOfDaySunColors;
+    [FormerlySerializedAs("seasonSunIntensities")]
+    [SerializeField] private float[] timeOfDaySunIntensities;
 
     [Header("Ambient Settings")]
-    [SerializeField] private Color[] seasonAmbientColors;
-    [SerializeField] private float[] seasonAmbientIntensities;
+    [FormerlySerializedAs("seasonAmbientColors")]
+    [SerializeField] private Color[] timeOfDayAmbientColors;
+    [FormerlySerializedAs("seasonAmbientIntensities")]
+    [SerializeField] private float[] timeOfDayAmbientIntensities;
 
     [Header("Fog Settings")]
-    [SerializeField] private Color[] seasonFogColors;
+    [FormerlySerializedAs("seasonFogColors")]
+    [SerializeField] private Color[] timeOfDayFogColors;
 
     private Color originalLightColor;
     private float originalLightIntensity;
@@ -40,7 +50,7 @@ public class GardenManager : MonoBehaviour
 
     [Header("Game State")]
     private int plantCount = 0;
-    private Season currentSeason = Season.Summer;
+    private TimeOfDay currentTimeOfDay = TimeOfDay.Midday;
 
     private void Awake()
     {
@@ -54,8 +64,7 @@ public class GardenManager : MonoBehaviour
             Destroy(gameObject);
         }
         
-        // Ensure snow is dead on arrival
-        StopSnow();
+        StopParticles();
     }
 
     private void Start()
@@ -72,17 +81,17 @@ public class GardenManager : MonoBehaviour
         originalAmbientMode = RenderSettings.ambientMode;
         originalFogColor = RenderSettings.fogColor;
 
-        StopSnow();
+        StopParticles();
 
-        SetSeason(Season.Summer);
+        SetTimeOfDay(TimeOfDay.Midday);
     }
     
-    private void StopSnow()
+    private void StopParticles()
     {
-        if (snowParticleSystem != null)
+        if (nightParticleSystem != null)
         {
             // Forcefully clear all existing particles
-            snowParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
+            nightParticleSystem.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
         }
     }
 
@@ -92,31 +101,30 @@ public class GardenManager : MonoBehaviour
         // Optional: Affect environment based on plants if needed
     }
 
-    public void SetSeason(Season newSeason)
+    public void SetTimeOfDay(TimeOfDay newTime)
     {
-        currentSeason = newSeason;
-        int index = (int)currentSeason;
-        Debug.Log("Setting season to: " + currentSeason);
+        currentTimeOfDay = newTime;
+        int index = (int)currentTimeOfDay;
+        Debug.Log("Setting time of day to: " + currentTimeOfDay);
         
         // Reset effects first
-        StopSnow();
+        StopParticles();
         
         UpdateSkybox(index);
 
         if (directionalLight != null)
         {
-            // Apply overrides for all seasons (including Summer)
-            if (seasonSunColors != null && index < seasonSunColors.Length) 
-                directionalLight.color = seasonSunColors[index];
+            if (timeOfDaySunColors != null && index < timeOfDaySunColors.Length) 
+                directionalLight.color = timeOfDaySunColors[index];
             
-            if (seasonSunIntensities != null && index < seasonSunIntensities.Length) 
-                directionalLight.intensity = seasonSunIntensities[index];
+            if (timeOfDaySunIntensities != null && index < timeOfDaySunIntensities.Length) 
+                directionalLight.intensity = timeOfDaySunIntensities[index];
             
-            if (seasonSunRotations != null && index < seasonSunRotations.Length) 
-                directionalLight.transform.rotation = Quaternion.Euler(seasonSunRotations[index]);
+            if (timeOfDaySunRotations != null && index < timeOfDaySunRotations.Length) 
+                directionalLight.transform.rotation = Quaternion.Euler(timeOfDaySunRotations[index]);
         }
 
-        if (index == 0) // Summer (Default)
+        if (index == 0) // Midday (Default)
         {
              RenderSettings.ambientMode = originalAmbientMode;
              RenderSettings.ambientLight = originalAmbientColor;
@@ -124,23 +132,23 @@ public class GardenManager : MonoBehaviour
         else
         {
              RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-             if (seasonAmbientColors != null && index < seasonAmbientColors.Length) 
-                RenderSettings.ambientLight = seasonAmbientColors[index];
+             if (timeOfDayAmbientColors != null && index < timeOfDayAmbientColors.Length) 
+                RenderSettings.ambientLight = timeOfDayAmbientColors[index];
         }
 
-        if (seasonAmbientIntensities != null && index < seasonAmbientIntensities.Length)
+        if (timeOfDayAmbientIntensities != null && index < timeOfDayAmbientIntensities.Length)
         {
-            RenderSettings.ambientIntensity = seasonAmbientIntensities[index];
+            RenderSettings.ambientIntensity = timeOfDayAmbientIntensities[index];
         }
 
-        if (seasonFogColors != null && index < seasonFogColors.Length)
+        if (timeOfDayFogColors != null && index < timeOfDayFogColors.Length)
         {
-            RenderSettings.fogColor = seasonFogColors[index];
+            RenderSettings.fogColor = timeOfDayFogColors[index];
         }
 
-        if (currentSeason == Season.Winter && snowParticleSystem != null)
+        if (currentTimeOfDay == TimeOfDay.Night && nightParticleSystem != null)
         {
-            snowParticleSystem.Play();
+            nightParticleSystem.Play();
         }
 
         DynamicGI.UpdateEnvironment();
@@ -148,25 +156,25 @@ public class GardenManager : MonoBehaviour
 
     private void UpdateSkybox(int index)
     {
-        if (seasonSkyboxes != null && index < seasonSkyboxes.Length && seasonSkyboxes[index] != null)
+        if (timeOfDaySkyboxes != null && index < timeOfDaySkyboxes.Length && timeOfDaySkyboxes[index] != null)
         {
-            RenderSettings.skybox = seasonSkyboxes[index];
+            RenderSettings.skybox = timeOfDaySkyboxes[index];
         }
         else if (index == 0 && originalSkybox != null)
         {
              RenderSettings.skybox = originalSkybox;
         }
-        else if (index == 3) // Winter Fallback (if no skybox assigned)
+        else if (index == 3) // Night Fallback (if no skybox assigned)
         {
              RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
-             RenderSettings.ambientLight = new Color(0.2f, 0.25f, 0.45f); // Dark Blue Night/Winter
+             RenderSettings.ambientLight = new Color(0.1f, 0.1f, 0.2f); // Darker Blue for Night
         }
     }
 
     public void RestartGarden()
     {
         plantCount = 0;
-        SetSeason(Season.Summer);
+        SetTimeOfDay(TimeOfDay.Midday);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

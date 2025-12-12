@@ -929,7 +929,7 @@ GameObject:
   - component: {fileID: 245985292}
   - component: {fileID: 245985291}
   m_Layer: 5
-  m_Name: Btn_Autumn
+  m_Name: Btn_Evening
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1001,7 +1001,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2109726343}
         m_TargetAssemblyTypeName: HandMenuController, Assembly-CSharp
-        m_MethodName: OnAutumnPressed
+        m_MethodName: OnEveningPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1202,7 +1202,7 @@ GameObject:
   - component: {fileID: 307315139}
   - component: {fileID: 307315138}
   m_Layer: 5
-  m_Name: Btn_Summer
+  m_Name: Btn_Midday
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1274,7 +1274,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2109726343}
         m_TargetAssemblyTypeName: HandMenuController, Assembly-CSharp
-        m_MethodName: OnSummerPressed
+        m_MethodName: OnMiddayPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2067,39 +2067,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7794751935d133a4abb57b5ef0f64a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GardenManager
-  seasonSkyboxes:
+  timeOfDaySkyboxes:
   - {fileID: 2100000, guid: c051fe5a20f72814f9643eb10ebbd2fc, type: 2}
   - {fileID: 2100000, guid: b141c8e4f6387ef45b13a68b10c88b7f, type: 2}
   - {fileID: 2100000, guid: 6e00f8b39315691449f256740a5cb862, type: 2}
   - {fileID: 2100000, guid: e0a21ebc98cee4e46bbae873ec0be703, type: 2}
   directionalLight: {fileID: 201238895}
-  snowParticleSystem: {fileID: 1050506656}
-  seasonSunRotations:
+  nightParticleSystem: {fileID: 1050506656}
+  timeOfDaySunRotations:
   - {x: 70, y: 22, z: 0}
   - {x: 54, y: -30, z: 0}
   - {x: 12, y: 65, z: 0}
   - {x: 60, y: -30, z: 0}
-  seasonSunColors:
+  timeOfDaySunColors:
   - {r: 1, g: 1, b: 0.9843137, a: 1}
   - {r: 1, g: 1, b: 0.9843137, a: 1}
   - {r: 0.78431374, g: 0.44616824, b: 0.113725476, a: 1}
   - {r: 0.6, g: 0.75, b: 1, a: 1}
-  seasonSunIntensities:
+  timeOfDaySunIntensities:
   - 8
   - 7
   - 5
   - 0
-  seasonAmbientColors:
+  timeOfDayAmbientColors:
   - {r: 1, g: 1, b: 0.9843137, a: 1}
   - {r: 0.8820755, g: 0.9963093, b: 1, a: 1}
   - {r: 0.4, g: 0.2, b: 0.1, a: 1}
   - {r: 0.2845319, g: 0.31488493, b: 0.4339623, a: 1}
-  seasonAmbientIntensities:
+  timeOfDayAmbientIntensities:
   - 1.5
   - 1
   - 2
   - 1
-  seasonFogColors:
+  timeOfDayFogColors:
   - {r: 0.76862746, g: 0.94509804, b: 1, a: 1}
   - {r: 0.5058824, g: 0.7607844, b: 0.9215687, a: 1}
   - {r: 0.754717, g: 0.47473076, b: 0.28123888, a: 1}
@@ -3013,7 +3013,7 @@ GameObject:
   - component: {fileID: 925030751}
   - component: {fileID: 925030750}
   m_Layer: 5
-  m_Name: Btn_Winter
+  m_Name: Btn_Night
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3085,7 +3085,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2109726343}
         m_TargetAssemblyTypeName: HandMenuController, Assembly-CSharp
-        m_MethodName: OnWinterPressed
+        m_MethodName: OnNightPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8962,7 +8962,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Spring
+  m_text: 'Morning
 
 '
   m_isRightToLeft: 0
@@ -10054,7 +10054,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Summer
+  m_text: 'Midday
 
 '
   m_isRightToLeft: 0
@@ -10409,7 +10409,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Autumn
+  m_text: Evening
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10611,7 +10611,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Winter
+  m_text: Night
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -10848,7 +10848,7 @@ GameObject:
   - component: {fileID: 1648293808}
   - component: {fileID: 1648293807}
   m_Layer: 5
-  m_Name: Btn_Spring
+  m_Name: Btn_Morning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10920,7 +10920,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2109726343}
         m_TargetAssemblyTypeName: HandMenuController, Assembly-CSharp
-        m_MethodName: OnSpringPressed
+        m_MethodName: OnMorningPressed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

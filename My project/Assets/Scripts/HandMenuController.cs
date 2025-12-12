@@ -43,35 +43,35 @@ public class HandMenuController : MonoBehaviour
         }
     }
 
-    public void OnSummerPressed()
+    public void OnMiddayPressed()
     {
         if (GardenManager.Instance != null)
         {
-            GardenManager.Instance.SetSeason(GardenManager.Season.Summer);
+            GardenManager.Instance.SetTimeOfDay(GardenManager.TimeOfDay.Midday);
         }
     }
 
-    public void OnSpringPressed()
+    public void OnMorningPressed()
     {
         if (GardenManager.Instance != null)
         {
-            GardenManager.Instance.SetSeason(GardenManager.Season.Spring);
+            GardenManager.Instance.SetTimeOfDay(GardenManager.TimeOfDay.Morning);
         }
     }
 
-    public void OnAutumnPressed()
+    public void OnEveningPressed()
     {
         if (GardenManager.Instance != null)
         {
-            GardenManager.Instance.SetSeason(GardenManager.Season.Autumn);
+            GardenManager.Instance.SetTimeOfDay(GardenManager.TimeOfDay.Evening);
         }
     }
 
-    public void OnWinterPressed()
+    public void OnNightPressed()
     {
         if (GardenManager.Instance != null)
         {
-            GardenManager.Instance.SetSeason(GardenManager.Season.Winter);
+            GardenManager.Instance.SetTimeOfDay(GardenManager.TimeOfDay.Night);
         }
     }
 
